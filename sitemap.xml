@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  
+  <!-- ==================== PAGE ACCUEIL ==================== -->
+  <url>
+    <loc>https://mossissi-group.vercel.app/</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/IMG3.jpeg</image:loc>
+      <image:caption>MOSSISSI Group - Groupe Panafricain d'Influence</image:caption>
+      <image:title>MOSSISSI Group Accueil</image:title>
+    </image:image>
+  </url>
+
+  <!-- ==================== PAGE CABINET LOBBYING ==================== -->
+  <url>
+    <loc>https://mossissi-group.vercel.app/#cabinet</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/cabinet/presi1.jpeg</image:loc>
+      <image:caption>Serge Ondobo - Président Directeur Général</image:caption>
+      <image:title>Serge Ondobo - MOSSISSI Group</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/cabinet/presi5.jpg</image:loc>
+      <image:caption>Serge Ondobo à la 7ème Croisade de prière pour la consécration de la Nation</image:caption>
+      <image:title>Serge Ondobo - Croisade de prière 2026</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/cabinet/presi6.jpg</image:loc>
+      <image:caption>Serge Ondobo reçoit un Award d'Honneur</image:caption>
+      <image:title>Serge Ondobo - Award d'Honneur</image:title>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://mossissi-group.vercel.app/images/cabinet/presi1.jpeg</video:thumbnail_loc>
+      <video:title>Interview exclusive de Serge Ondobo</video:title>
+      <video:description>Serge Ondobo s'exprime sur l'avenir du lobbying en Afrique</video:description>
+      <video:content_loc>https://mossissi-group.vercel.app/videos/cabinet/music.mp4</video:content_loc>
+      <video:duration>300</video:duration>
+      <video:publication_date>2026-01-15</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <!-- ==================== PAGE MOSSISSI TV ==================== -->
+  <url>
+    <loc>https://mossissi-group.vercel.app/#mosssitv</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    
+    <!-- Images Mossissi TV -->
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/mossissitv/image1.jpeg</image:loc>
+      <image:caption>CAMEROUN - FLASH INF'EAU CAMWATER</image:caption>
+      <image:title>CAMWATER - Information eau potable</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/mossissitv/image2.jpeg</image:loc>
+      <image:caption>200 nouvelles bornes-fontaines CAMWATER</image:caption>
+      <image:title>CAMWATER - Bornes-fontaines</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/mossissitv/image3.jpeg</image:loc>
+      <image:caption>Dr Blaise MOUSSA - L'eau, une véritable cause nationale</image:caption>
+      <image:title>Dr Blaise MOUSSA - CAMWATER</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/mossissitv/image4.jpeg</image:loc>
+      <image:caption>Le Catalogue des Grandes Réalisations - L'Eau au cœur de l'Émergence</image:caption>
+      <image:title>Réalisations CAMWATER</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/mossissitv/image5.jpeg</image:loc>
+      <image:caption>Eau et Assainissement pour tous - Le Nouveau Manifeste</image:caption>
+      <image:title>AAEA - Congrès de l'eau</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/mossissitv/image6.jpeg</image:loc>
+      <image:caption>La Renaissance Africaine par l'Eau</image:caption>
+      <image:title>AAEA - Renaissance Africaine</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/mossissitv/image7.jpeg</image:loc>
+      <image:caption>Participation record aux congrès AAEA</image:caption>
+      <image:title>AAEA - Participation record</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/mossissitv/image8.jpeg</image:loc>
+      <image:caption>Le Cameroun, terre d'accueil et de solutions</image:caption>
+      <image:title>Cameroun - AAEA 2026</image:title>
+    </image:image>
+    
+    <!-- Vidéos Mossissi TV -->
+    <video:video>
+      <video:thumbnail_loc>https://mossissi-group.vercel.app/images/mossissitv/image1.jpeg</video:thumbnail_loc>
+      <video:title>CAMEROUN - Retrouvaille des Jeunes Patriotes</video:title>
+      <video:description>Assemblée générale des Jeunes Patriotes du 11 janvier 2026 à Yaoundé</video:description>
+      <video:content_loc>https://mossissi-group.vercel.app/videos/video1.mp4</video:content_loc>
+      <video:duration>180</video:duration>
+      <video:publication_date>2026-01-12</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://mossissi-group.vercel.app/images/mossissitv/image2.jpeg</video:thumbnail_loc>
+      <video:title>L'évènement de l'année à Yaoundé</video:title>
+      <video:description>Événement majeur à Yaoundé</video:description>
+      <video:content_loc>https://mossissi-group.vercel.app/videos/video2.mp4</video:content_loc>
+      <video:duration>240</video:duration>
+      <video:publication_date>2026-01-05</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://mossissi-group.vercel.app/images/mossissitv/image3.jpeg</video:thumbnail_loc>
+      <video:title>Yaoundé - Capitale Africaine de l'Eau</video:title>
+      <video:description>Yaoundé, Capitale Africaine de l'Eau du 9 au 13 Février 2026</video:description>
+      <video:content_loc>https://mossissi-group.vercel.app/videos/video4.mp4</video:content_loc>
+      <video:duration>150</video:duration>
+      <video:publication_date>2026-02-10</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://mossissi-group.vercel.app/images/mossissitv/image4.jpeg</video:thumbnail_loc>
+      <video:title>Joyeux Anniversaire Paul Biya</video:title>
+      <video:description>Message des Jeunes Patriotes pour l'anniversaire du Président Paul Biya</video:description>
+      <video:content_loc>https://mossissi-group.vercel.app/videos/video5.mp4</video:content_loc>
+      <video:duration>200</video:duration>
+      <video:publication_date>2026-02-15</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://mossissi-group.vercel.app/images/mossissitv/image5.jpeg</video:thumbnail_loc>
+      <video:title>Projets présidentiels - Eau potable</video:title>
+      <video:description>LES PROJETS PRÉSIDENTIELS SE METTENT EN PLACE POUR L'ACCROISSEMENT DE L'OFFRE EN EAU POTABLE</video:description>
+      <video:content_loc>https://mossissi-group.vercel.app/videos/video6.mp4</video:content_loc>
+      <video:duration>220</video:duration>
+      <video:publication_date>2026-02-18</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <!-- ==================== PAGE JEUNES PATRIOTES PANAFRICAINS ==================== -->
+  <url>
+    <loc>https://mossissi-group.vercel.app/#jpp</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    
+    <!-- Images JPP -->
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/jpp/asg4.jpg</image:loc>
+      <image:caption>Assemblée Générale des Jeunes Patriotes Panafricains - Édition 2025</image:caption>
+      <image:title>JPP - Assemblée Générale 2025</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/jpp/ree.jpg</image:loc>
+      <image:caption>Jeunes Patriotes Panafricains derrière la réélection du Président Paul BIYA</image:caption>
+      <image:title>JPP - Soutien à Paul BIYA</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mossissi-group.vercel.app/images/jpp/sport.jpg</image:loc>
+      <image:caption>Moment de détente du mouvement Jeunes Patriotes Panafricains</image:caption>
+      <image:title>JPP - Détente</image:title>
+    </image:image>
+    
+    <!-- Vidéos JPP -->
+    <video:video>
+      <video:thumbnail_loc>https://mossissi-group.vercel.app/images/jpp/asg4.jpg</video:thumbnail_loc>
+      <video:title>Assemblée Générale des JPP 2025</video:title>
+      <video:description>ASSEMBLEE GENERALE DES JPP – EDITION 2025 : Les JPP entre bilan, reconnaissance et ambitions renouvelées</video:description>
+      <video:content_loc>https://mossissi-group.vercel.app/jpp/asg1.mp4</video:content_loc>
+      <video:duration>360</video:duration>
+      <video:publication_date>2026-01-11</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://mossissi-group.vercel.app/images/jpp/ree.jpg</video:thumbnail_loc>
+      <video:title>Retrouvailles des Jeunes Patriotes</video:title>
+      <video:description>Retrouvailles Des Jeunes Patriotes dans leur rendez-vous annuel du 11 Janvier 2026 à Yaoundé</video:description>
+      <video:content_loc>https://mossissi-group.vercel.app/videos/jpp/video1.mp4</video:content_loc>
+      <video:duration>300</video:duration>
+      <video:publication_date>2026-01-11</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <!-- ==================== INFORMATIONS COMPLÉMENTAIRES ==================== -->
+  <url>
+    <loc>https://mossissi-group.vercel.app/#contact</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Liens externes importants (Facebook) -->
+  <url>
+    <loc>https://www.facebook.com/serge.ondobo</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.facebook.com/mossissitv/</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.facebook.com/groups/867202710143607/</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

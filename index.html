@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOSSISSI Group | Cabinet de Lobbying Panafricain & Média d'Influence</title>
+<meta name="description" content="MOSSISSI Group : lobbying politique & financier, Mossissi TV (50K+ abonnés), mouvement Jeunes Patriotes Panafricains. Influence et engagement pour l'Afrique.">
+
+
+
+
+
+        <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MOSSISSI Group",
+    "url": "https://mossissi-group.vercel.app",
+    "logo": "https://votredomaine.com/logo.png",
+    "sameAs": [
+        "https://www.facebook.com/serge.ondobo",
+        "https://www.facebook.com/mossissitv/"
+    ],
+    "description": "Groupe international de lobbying politique et financier, média et mouvement citoyen international.",
+    "founder": {
+        "@type": "Person",
+        "name": "Serge Ondobo",
+        "awards": "Chevalier de l'Ordre National du Mérite Camerounais, Prix Excellence Patriotique 2025"
+    }
+    }
+    </script>
+
+
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Hero avec image pour l'accueil seulement */
+        .hero-accueil {
+            background: linear-gradient(135deg, rgba(182, 197, 218, 0.15) 0%, rgba(30, 58, 138, 0.15) 50%, rgba(37, 99, 235, 0.15) 100%), 
+                        url('./images/image.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        
+        /* Hero bleu simple pour les autres pages */
+        .hero-bleu {
+            background: linear-gradient(135deg, #0a1e3c 0%, #1e3a8a 50%, #2563eb 100%);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            object-fit: cover;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .description-container {
+            max-height: 6rem; /* Augmenté de 4.5rem à 6rem */
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .description-container.expanded {
+            max-height: 30rem; /* Augmenté de 20rem à 30rem */
+        }
+        .see-more-btn {
+            color: #1e3a8a;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .see-more-btn:hover {
+            text-decoration: underline;
+        }
+        
+        /* Styles uniformes pour toutes les cartes d'images - VERSION MOSSiSSI TV */
+        .image-card {
+            background: white;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(30, 58, 138, 0.1);
+        }
+        .image-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 30px -10px rgba(30, 58, 138, 0.3);
+            border-color: #fbbf24;
+        }
+        .image-card img {
+            width: 100%;
+            height: 240px; /* Augmenté de 180px à 240px */
+            object-fit: cover;
+            border-bottom: 3px solid #fbbf24;
+        }
+        .image-card-content {
+            padding: 1.5rem; /* Augmenté de 1rem à 1.5rem */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .image-card-title {
+            font-weight: 800; /* Plus gras */
+            color: #1e3a8a;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem; /* Plus grand */
+            line-height: 1.5;
+            border-left: 4px solid #fbbf24;
+            padding-left: 0.75rem;
+        }
+        .image-card-description {
+            flex-grow: 1;
+            font-size: 0.95rem; /* Plus grand */
+            line-height: 1.6;
+        }
+        .image-card-description p {
+            color: #4b5563;
+        }
+        
+        /* Grille pour les cartes d'images - uniforme partout */
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .images-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .images-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Responsive pour les cartes */
+        @media (max-width: 768px) {
+            .image-card img {
+                height: 200px;
+            }
+            .image-card-content {
+                padding: 1.25rem;
+            }
+            .image-card-title {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Navigation Commune -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-lg border-b-4 border-blue-900">
+        <div class="container mx-auto px-4 sm:px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2 sm:space-x-4 cursor-pointer" onclick="showPage('accueil')">
+                    <i class="fas fa-globe-africa text-3xl sm:text-4xl text-blue-900"></i>
+                    <span class="text-xl sm:text-2xl font-black text-blue-900">MOSSISSI</span>
+                    <span class="text-xl sm:text-2xl font-black text-yellow-500">Group</span>
+                </div>
+                
+                <!-- Menu mobile -->
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-blue-900 text-2xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+
+                <!-- Menu desktop -->
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="#" onclick="showPage('accueil'); return false;" class="text-gray-700 hover:text-blue-900 font-semibold">Accueil</a>
+                    <a href="#" onclick="showPage('cabinet'); return false;" class="text-gray-700 hover:text-blue-900 font-semibold">Cabinet Lobbying</a>
+                    <a href="#" onclick="showPage('mosssitv'); return false;" class="text-gray-700 hover:text-blue-900 font-semibold">Mossissi TV</a>
+                    <a href="#" onclick="showPage('jpp'); return false;" class="text-gray-700 hover:text-blue-900 font-semibold">Jeunes Patriotes Panafricains</a>
+                    <a href="mailto:sergeondobo@yahoo.fr" class="bg-blue-900 text-white px-4 lg:px-6 py-2 rounded-full font-semibold hover:bg-blue-800 transition">
+                        Contact
+                    </a>
+                </div>
+            </div>
+
+            <!-- Menu mobile -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#" onclick="showPage('accueil'); return false;" class="block py-2 text-gray-700 hover:text-blue-900 font-semibold">Accueil</a>
+                <a href="#" onclick="showPage('cabinet'); return false;" class="block py-2 text-gray-700 hover:text-blue-900 font-semibold">Cabinet Lobbying</a>
+                <a href="#" onclick="showPage('mosssitv'); return false;" class="block py-2 text-gray-700 hover:text-blue-900 font-semibold">Mossissi TV</a>
+                <a href="#" onclick="showPage('jpp'); return false;" class="block py-2 text-gray-700 hover:text-blue-900 font-semibold">Jeunes Patriotes Panafricains</a>
+                <a href="#contact" class="block py-2 text-blue-900 font-semibold">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== PAGE ACCUEIL ==================== -->
+    <div id="page-accueil" class="page active">
+        <!-- Hero Section avec image de fond -->
+        <section class="hero-accueil pt-24 sm:pt-28 pb-16 sm:pb-20 relative overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6 relative z-10">
+                <div class="text-center text-white max-w-4xl mx-auto">
+                    <div class="inline-flex items-center bg-white/20 backdrop-blur-sm px-4 sm:px-6 py-2 rounded-full mb-6 sm:mb-8">
+                        <i class="fas fa-crown text-yellow-400 mr-2"></i>
+                        <span class="text-xs sm:text-sm font-semibold">GROUPE INTERNATIONAL D'INFLUENCE</span>
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-blue-900 font-black mb-4 sm:mb-6">
+                        MOSSISSI <span class="text-yellow-400">GROUP</span>
+                    </h1>
+                    
+                    <p class="text-base sm:text-lg md:text-xl text-blue-100 mb-8 sm:mb-10 px-4 max-w-3xl mx-auto">
+                        Un groupe international structuré autour de trois piliers complémentaires : 
+                        le lobbying d'influence, l'information médiatique et l'engagement citoyen.
+                    </p>
+
+                    <!-- Cartes des 3 entités -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12">
+                        <!-- Cabinet Lobbying -->
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:bg-white/20 transition cursor-pointer" onclick="showPage('cabinet')">
+                            <i class="fas fa-handshake text-3xl sm:text-4xl text-yellow-400 mb-3"></i>
+                            <h3 class="text-base sm:text-lg font-bold text-white mb-2">Cabinet Lobbying</h3>
+                            <p class="text-xs sm:text-sm text-blue-200">Politique & Financier International</p>
+                            <span class="inline-block mt-3 text-yellow-400 text-xs">Cliquer pour découvrir →</span>
+                        </div>
+
+                        <!-- Mossissi TV -->
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:bg-white/20 transition cursor-pointer" onclick="showPage('mosssitv')">
+                            <i class="fas fa-tv text-3xl sm:text-4xl text-yellow-400 mb-3"></i>
+                            <h3 class="text-base sm:text-lg font-bold text-white mb-2">Mossissi TV</h3>
+                            <p class="text-xs sm:text-sm text-blue-200">Chaîne d'information Internationale</p>
+                            <span class="inline-block mt-3 text-yellow-400 text-xs">Cliquer pour découvrir →</span>
+                        </div>
+
+                        <!-- JPP -->
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:bg-white/20 transition cursor-pointer" onclick="showPage('jpp')">
+                            <i class="fas fa-users text-3xl sm:text-4xl text-yellow-400 mb-3"></i>
+                            <h3 class="text-base sm:text-lg font-bold text-white mb-2">Jeunes Patriotes Panafricains (JPP) </h3>
+                            <p class="text-xs sm:text-sm text-blue-200">Mouvement citoyen panafricain</p>
+                            <span class="inline-block mt-3 text-yellow-400 text-xs">Cliquer pour découvrir →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Résumé du Groupe -->
+        <section class="py-12 sm:py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-12">Notre Groupe</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                        <div class="bg-gray-50 p-4 sm:p-6 rounded-xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-blue-900 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-handshake text-white"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800">Cabinet de Lobbying</h3>
+                            </div>
+                            <p class="text-sm sm:text-base text-gray-600">
+                                Conseil stratégique de haut niveau, représentation d'intérêts auprès des décideurs africains 
+                                et accompagnement des investissements internationaux.
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 sm:p-6 rounded-xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-blue-900 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-tv text-white"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800">Mossissi TV</h3>
+                            </div>
+                            <p class="text-sm sm:text-base text-gray-600">
+                                Média international implanté dans plusieurs pays en Afrique , dans le monde et sur le web  avec plus de 50 000 abonnés  sur Facebook. Informations, débats et documentaires 
+                                sur les réalités du continent.
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 sm:p-6 rounded-xl md:col-span-2">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-blue-900 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-users text-white"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800">Jeunes Patriotes Panafricains</h3>
+                            </div>
+                            <p class="text-sm sm:text-base text-gray-600">
+                                Mouvement citoyen fondé par Serge Ondobo pour l'encadrement et la formation de la jeunesse africaine. 
+                                Plus de 5000 jeunes accompagnés à travers des programmes de leadership, d'actions citoyennes et sportives.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer sur Accueil -->
+        <footer id="contact" class="bg-gray-900 text-white py-8 sm:py-12">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                    <div>
+                        <div class="flex items-center space-x-2 mb-4">
+                            <i class="fas fa-globe-africa text-2xl text-yellow-400"></i>
+                            <span class="text-lg sm:text-xl font-bold">MOSSISSI GROUP</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-400">
+                            Lobbying politique & financier, média et mouvement citoyen.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm sm:text-base mb-3 sm:mb-4">Liens rapides</h4>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gray-400">
+                            <li><a href="#" onclick="showPage('accueil'); return false;" class="hover:text-white">Accueil</a></li>
+                            <li><a href="#" onclick="showPage('cabinet'); return false;" class="hover:text-white">Cabinet Lobbying</a></li>
+                            <li><a href="#" onclick="showPage('mosssitv'); return false;" class="hover:text-white">Mossissi TV</a></li>
+                            <li><a href="#" onclick="showPage('jpp'); return false;" class="hover:text-white">Jeunes Patriotes</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm sm:text-base mb-3 sm:mb-4">Contact</h4>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gray-400">
+                            <li><i class="fas fa-map-marker-alt mr-2 text-yellow-400"></i>Yaoundé, Cameroun</li>
+                            <li><i class="fas fa-envelope mr-2 text-yellow-400"></i><a href="mailto:sergeondobo@yahoo.fr">sergeondobo@yahoo.fr</a></li>
+                            <li><i class="fas fa-phone mr-2 text-yellow-400"></i>(+237) 6 98 66 30 66 / 6 78 70 49 59</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm sm:text-base mb-3 sm:mb-4">Suivez-nous</h4>
+                        <div class="flex space-x-3">
+                            <a href="https://www.facebook.com/serge.ondobo" class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-gray-900 transition">
+                                <i class="fab fa-facebook-f text-xs sm:text-sm"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-gray-900 transition">
+                                <i class="fab fa-twitter text-xs sm:text-sm"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-gray-900 transition">
+                                <i class="fab fa-linkedin-in text-xs sm:text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800 mt-6 sm:mt-8 pt-4 sm:pt-6 text-center text-xs sm:text-sm text-gray-500">
+                    <p>&copy; 2026 MOSSISSI Group - Tous droits réservés</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==================== PAGE CABINET LOBBYING ==================== -->
+    <div id="page-cabinet" class="page">
+        <!-- Hero Section bleue (plus grande) with video background -->
+        <section class="hero-bleu relative pt-24 sm:pt-28 pb-12 sm:pb-16 min-h-screen overflow-hidden">
+            <!-- video background fills entire hero -->
+            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+                <source src="./videos/cabinet/presi.mp4" type="video/mp4">
+            </video>
+            <div class="container text-center mx-auto px-4 sm:px-6 relative z-10">
+               
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Cabinet de <span class="text-yellow-400">Lobbying</span></h1>
+                <p class="text-lg sm:text-xl text-blue-200 mt-4">Politique & Financier International</p>
+            </div>
+        </section>
+
+        <!-- Président en vedette -->
+        <section class="py-12 sm:py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-5xl mx-auto bg-gray-50 rounded-2xl shadow-xl overflow-hidden mb-12">
+                    <div class="flex flex-col lg:flex-row">
+                        <div class="lg:w-1/3 bg-gradient-to-br from-blue-900 to-blue-700 p-8 flex items-center justify-center">
+                            <div class="text-center">
+                                <img src="./images/cabinet/presi1.jpeg" 
+                             alt="Serge Ondobo" 
+                             class="rounded-2xl shadow-2xl border-4 border-yellow-400">
+                                <h3 class="text-xl sm:text-2xl font-bold text-white">Serge Ondobo</h3>
+                                <p class="text-yellow-500 text-sm sm:text-base">Président Directeur Général</p>
+                            </div>
+                        </div>
+                        <div class="lg:w-2/3 p-6 sm:p-8">
+                            <div class="flex flex-wrap gap-2 sm:gap-3 mb-6">
+                                <span class="bg-yellow-100 text-yellow-800 px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
+                                    <i class="fas fa-medal mr-1 sm:mr-2"></i>Chevalier de l'Ordre National du Mérite Camerounais (Décret présidentiel, 2021)
+                                </span>
+                                <span class="bg-yellow-100 text-yellow-800 px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
+                                    <i class="fas fa-medal mr-1 sm:mr-2"></i>Diplôme de mérite de l’ambassadeur de l’entrepreneuriat au Cameroun en 2025 
+                                </span>
+                                <span class="bg-yellow-100 text-yellow-800 px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
+                                    <i class="fas fa-medal mr-1 sm:mr-2"></i>Meilleure Association de Soutien au Président Paul BIYA (Les Jeunes Patriotes, 2018)
+                                </span>
+                                <span class="bg-blue-100 text-blue-800 px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
+                                    <i class="fas fa-trophy mr-1 sm:mr-2"></i>Prix Excellence Patriotique 2025
+                                </span>
+                                <span class="bg-blue-100 text-blue-800 px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
+                                    <i class="fas fa-trophy mr-1 sm:mr-2"></i>Prix d'Excellence Patriotique (2021)
+                                </span>
+                                <span class="bg-blue-100 text-blue-800 px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
+                                    <i class="fas fa-trophy mr-1 sm:mr-2"></i>Grand Prix Africain de Leadership Jeune (2023)
+                                </span>
+                            </div>
+                            <p class="text-gray-600 text-sm sm:text-base mb-6">
+                                Expert reconnu en lobbying politique et stratégies d'influence. Philanthrope, Serge Ondobo a développé un réseau exceptionnel 
+                                de décideurs à travers l'Afrique et le monde. Son expertise est sollicitée par les plus grandes institutions et entreprises.
+                            </p>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="text-center">
+                                    <div class="text-xl sm:text-2xl font-bold text-blue-900">+25</div>
+                                    <div class="text-xs sm:text-sm text-gray-600">Experts</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-xl sm:text-2xl font-bold text-blue-900">+150</div>
+                                    <div class="text-xs sm:text-sm text-gray-600">Décideurs</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-xl sm:text-2xl font-bold text-blue-900">15</div>
+                                    <div class="text-xs sm:text-sm text-gray-600">Pays</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vidéo et images du président avec descriptions - AVEC CARTES IMAGE-CARD -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    <!-- Vidéo avec description -->
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-4">Interview exclusive</h3>
+                        <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden">
+                            <div class="video-container">
+                                <video src="./videos/cabinet/music.mp4" controls preload="metadata" title="Mossissi TV - Interview" class="" ></video>
+                            </div>
+                            <!-- <div class="p-4">
+                                <div class="description-container" id="desc-interview">
+                                    <p class="text-sm text-gray-600">
+                                        Dans cette interview exclusive, Serge Ondobo s'exprime sur l'avenir du lobbying en Afrique. 
+                                        Il revient sur les défis et opportunités du continent en matière d'influence politique et financière, 
+                                        et partage sa vision pour le développement du lobbying africain à l'international. 
+                                        Une conversation passionnante sur les coulisses du pouvoir et les stratégies d'influence 
+                                        qui façonnent les décisions majeures en Afrique.
+                                    </p>
+                                </div>
+                                <span class="see-more-btn text-xs" onclick="toggleDescription('desc-interview', this)">Voir plus</span>
+                            </div> -->
+                        </div>
+                    </div>
+                    
+                    <!-- Images avec descriptions - UTILISATION DE IMAGE-CARD -->
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-4">Moments clés</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <!-- Carte 1 - Format image-card -->
+                            <div class="image-card">
+                                <img src="./images/cabinet/presi5.jpg" alt="Conférence">
+                                <div class="image-card-content">
+                                    <h4 class="image-card-title">Croisade de prière 2026</h4>
+                                    <div class="image-card-description">
+                                        <div class="description-container" id="desc-conf1">
+                                            <p class="text-gray-600">Le Président 𝐒𝐞𝐫𝐠𝐞 𝐎𝐧𝐝𝐨𝐛𝐨 a pris part ce vendredi 2 janvier 2026, aux côtés de 𝐌𝐚𝐝𝐚𝐦𝐞 𝐌𝐢𝐧𝐞𝐭𝐭𝐞 𝐋𝐢𝐛𝐨𝐦 𝐋𝐢 𝐋𝐢𝐤𝐞𝐧𝐠, Ministre des Postes et Télécommunications, ainsi que de nombreuses autorités administratives et religieuses, à la 𝟕ᵉ é𝐝𝐢𝐭𝐢𝐨𝐧 𝐝𝐞 𝐥𝐚 𝐂𝐫𝐨𝐢𝐬𝐚𝐝𝐞 𝐝𝐞 𝐩𝐫𝐢è𝐫𝐞 𝐩𝐨𝐮𝐫 𝐥𝐚 𝐜𝐨𝐧𝐬é𝐜𝐫𝐚𝐭𝐢𝐨𝐧 𝐝𝐞 𝐥𝐚 𝐍𝐚𝐭𝐢𝐨𝐧. Placée sous le thème : « 𝐏𝐫𝐨𝐬𝐩é𝐫𝐢𝐭é 𝐝𝐮 𝐂𝐚𝐦𝐞𝐫𝐨𝐮𝐧 𝐞𝐧 𝟐𝟎𝟐𝟔, 𝐝𝐚𝐧𝐬 𝐥𝐚 𝐣𝐮𝐬𝐭𝐢𝐜𝐞, 𝐥𝐚 𝐩𝐚𝐢𝐱, 𝐥’𝐮𝐧𝐢𝐭é 𝐞𝐭 𝐥𝐚 𝐬é𝐜𝐮𝐫𝐢𝐭é », cette rencontre spirituelle...</p>
+                                        </div>
+                                    </div>
+                                    <span class="see-more-btn" onclick="toggleDescription('desc-conf1', this)">Voir plus</span>
+                                </div>
+                            </div>
+
+                            <!-- Carte 2 - Format image-card -->
+                            <div class="image-card">
+                                <img src="./images/cabinet/presi6.jpg" alt="Meeting">
+                                <div class="image-card-content">
+                                    <h4 class="image-card-title">Award d'Honneur</h4>
+                                    <div class="image-card-description">
+                                        <div class="description-container" id="desc-meeting1">
+                                            <p class="text-gray-600">CAMEROUN🇨🇲 🏆 𝐃𝐈𝐒𝐓𝐈𝐍𝐂𝐓𝐈𝐎𝐍 & 𝐑𝐄𝐂𝐎𝐍𝐍𝐀𝐈𝐒𝐒𝐀𝐍𝐂𝐄 🇨🇲✨ À l'occasion de la 𝟕ᵉ 𝐞́𝐝𝐢𝐭𝐢𝐨𝐧 𝐝𝐞 𝐥𝐚 𝐂𝐫𝐨𝐢𝐬𝐚𝐝𝐞 𝐝𝐞 𝐩𝐫𝐢è𝐫𝐞 𝐩𝐨𝐮𝐫 𝐥𝐚 𝐜𝐨𝐧𝐬é𝐜𝐫𝐚𝐭𝐢𝐨𝐧 𝐝𝐞 𝐥𝐚 𝐍𝐚𝐭𝐢𝐨𝐧, placée sous le thème : « 𝐏𝐫𝐨𝐬𝐩é𝐫𝐢𝐭é 𝐝𝐮 𝐂𝐚𝐦𝐞𝐫𝐨𝐮𝐧 𝐞𝐧 𝟐𝟎𝟐𝟔, 𝐝𝐚𝐧𝐬 𝐥𝐚 𝐣𝐮𝐬𝐭𝐢𝐜𝐞, 𝐥𝐚 𝐩𝐚𝐢𝐱, 𝐥’𝐮𝐧𝐢𝐭é 𝐞𝐭 𝐥𝐚 𝐬é𝐜𝐮𝐫𝐢𝐭é», 🎊le Président 𝐒𝐞𝐫𝐠𝐞 𝐎𝐧𝐝𝐨𝐛𝐨 a reçu un 𝐀𝐰𝐚𝐫𝐝 𝐝’𝐇𝐨𝐧𝐧𝐞𝐮𝐫, des mains du 𝐑é𝐯é𝐫𝐞𝐧𝐝 𝐏𝐚𝐬𝐭𝐞𝐮𝐫 𝐋𝐢𝐛𝐨𝐦 𝐋𝐢𝐤𝐞𝐧𝐠...</p>
+                                        </div>
+                                    </div>
+                                    <span class="see-more-btn" onclick="toggleDescription('desc-meeting1', this)">Voir plus</span>
+                                </div>
+                            </div>
+
+                            <!-- Carte 3 - Format image-card -->
+                            <div class="image-card">
+                                <img src="./images/jpp/sport.jpg" alt="Réunion">
+                                <div class="image-card-content">
+                                    <h4 class="image-card-title">Moment de détente JPP</h4>
+                                    <div class="image-card-description">
+                                        <div class="description-container" id="desc-reunion1">
+                                            <p class="text-gray-600">Moment de détente du mouvement Jeunes Patriotes Panafricains</p>
+                                        </div>
+                                    </div>
+                                    <span class="see-more-btn" onclick="toggleDescription('desc-reunion1', this)">Voir plus</span>
+                                </div>
+                            </div>
+
+                            <!-- Carte 4 - Format image-card -->
+                            <div class="image-card">
+                                <img src="./images/jpp/ree.jpg" alt="Signature">
+                                <div class="image-card-content">
+                                    <h4 class="image-card-title">Soutien au Président Paul BIYA</h4>
+                                    <div class="image-card-description">
+                                        <div class="description-container" id="desc-signature1">
+                                            <p class="text-gray-600">Serge Ondobo ET LES JEUNES PATRIOTES PANAFRICAINS DERRIÈRE LA RÉÉLECTION DU PRÉSIDENT PAUL BIYA POUR UN NOUVEAU SEPTENNAT DE LA GLOIRE GLORIEUSE 👏👏👏👏👏👏👏👏👏👏👏👏👏👏👏👏👏</p>
+                                        </div>
+                                    </div>
+                                    <span class="see-more-btn" onclick="toggleDescription('desc-signature1', this)">Voir plus</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div class="max-w-5xl mx-auto mt-12">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-6 text-center">Nos services</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-blue-50 p-6 rounded-xl">
+                            <h4 class="font-bold text-blue-900 mb-3">Conseil Politique</h4>
+                            <p class="text-sm text-gray-600">Accompagnement stratégique auprès des institutions gouvernementales</p>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-xl">
+                            <h4 class="font-bold text-blue-900 mb-3">Conseil Financier</h4>
+                            <p class="text-sm text-gray-600">Facilitation des investissements et projets financiers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== PAGE MOSSISSI TV ==================== -->
+    <div id="page-mosssitv" class="page">
+        <!-- Hero Section bleue -->
+        <section class="hero-bleu pt-24 sm:pt-28 pb-12 sm:pb-16">
+            <div class="container text-center mx-auto px-4 sm:px-6">
+                
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white">MOSSISSI <span class="text-yellow-400">TV</span></h1>
+                <p class="text-lg sm:text-xl text-blue-200 mt-4">La chaîne d'information panafricaine</p>
+            </div>
+        </section>
+
+        <!-- Description -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <div class="inline-flex items-center bg-blue-900 text-white px-4 sm:px-6 py-2 rounded-full mb-6">
+                        <i class="fas fa-star mr-2 text-yellow-400"></i>
+                        <span class="text-xs sm:text-sm font-semibold">NOTRE MÉDIA</span>
+                    </div>
+                    <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                        Mossissi TV est la première chaîne d'information panafricaine sur Facebook. 
+                        Avec plus de <span class="font-bold text-blue-900">50 000 abonnés</span>, nous produisons quotidiennement 
+                        des contenus qui reflètent les réalités et les aspirations du continent.
+                    </p>
+                </div>
+
+                <!-- Statistiques -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto mb-12">
+                    <div class="bg-gray-50 p-4 text-center rounded-xl">
+                        <div class="text-xl sm:text-2xl font-bold text-blue-900">50K+</div>
+                        <div class="text-xs sm:text-sm text-gray-600">Abonnés</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 text-center rounded-xl">
+                        <div class="text-xl sm:text-2xl font-bold text-blue-900">1000+</div>
+                        <div class="text-xs sm:text-sm text-gray-600">Vidéos</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 text-center rounded-xl">
+                        <div class="text-xl sm:text-2xl font-bold text-blue-900">15</div>
+                        <div class="text-xs sm:text-sm text-gray-600">Pays</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 text-center rounded-xl">
+                        <div class="text-xl sm:text-2xl font-bold text-blue-900">24/7</div>
+                        <div class="text-xs sm:text-sm text-gray-600">Actualité</div>
+                    </div>
+                </div>
+
+                <!-- Grille de vidéos avec descriptions -->
+                <h3 class="text-lg sm:text-xl font-bold text-center text-gray-800 mb-6">Dernières vidéos</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
+                    <!-- Vidéo 1 -->
+                    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden">
+                        <div class="video-container">
+                             <video src="./videos/video1.mp4" controls preload="metadata" title="Mossissi TV - Interview" class="" ></video>
+                        </div>
+                        <div class="p-3 sm:p-4">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">CAMEROUN</h3>
+                            <div class="flex justify-between text-xs mb-2">
+                                <span><i class="fas fa-eye mr-1"></i>15K vues</span>
+                                <span>Il y a 3 jours</span>
+                            </div>
+                            <div class="description-container" id="desc-video1">
+                                
+                                <p class="text-xs text-gray-600">
+                                   Retrouvaille des Jeunes Patriotes dans leur rendez-vous annuel qui tenait lieu d'assemblée générale ce 11 janvier 2026 à Yaoundé.</p>
+                            <p><strong> C'EST TOUNOURS LE TEMPS DE PAUL BIYA   </strong></p>
+                               
+                            </div>
+                            <span class="see-more-btn text-xs" onclick="toggleDescription('desc-video1', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Vidéo 2 -->
+                    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden">
+                        <div class="video-container">
+                            <video src="./videos/video2.mp4" title="Mossissi TV - Documentaire" controls preload="metadata" playsinline></video>
+                        </div>
+                        <div class="p-3 sm:p-4">
+                             <h3 class="text-xl font-bold text-gray-800 mb-2">CAMEROUN</h3>
+                            <div class="flex justify-between text-xs mb-2">
+                                <span><i class="fas fa-eye mr-1"></i>25K vues</span>
+                                <span>Il y a 1 semaine</span>
+                            </div>
+                            <div class="description-container" id="desc-video2">
+                                <p class="text-xs text-gray-600">
+                                    L'évènement de l'année a Yaoundé... et Nulle Part ailleurs.</p>
+                             <p><strong> CMERCI AU PRESIDENT PAUL BIYA   </strong></p>
+                            </div>
+                            <span class="see-more-btn text-xs" onclick="toggleDescription('desc-video2', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Vidéo 3 -->
+                    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden">
+                        <div class="video-container">
+                             <video src="./videos/video3.mp4" title="Mossissi TV - Actualité" controls preload="metadata" playsinline></video>
+                        </div>
+                        
+                    </div>
+
+                    <!-- Vidéo 4 -->
+                    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden">
+                        <div class="video-container">
+                            <video src="./videos/video4.mp4" title="Mossissi TV - Culture" controls preload="metadata" playsinline></video>
+                        </div>
+                        <div class="p-3 sm:p-4">
+                           <h3 class="text-xl font-bold text-gray-800 mb-2">CAMEROUN 🇨🇲</h3>
+                            <div class="flex justify-between text-xs mb-2">
+                                <span><i class="fas fa-eye mr-1"></i>12K vues</span>
+                                <span>Il y a 5 jours</span>
+                            </div>
+                            <div class="description-container" id="desc-video4">
+                                <p class="text-xs text-gray-600">
+                                   Yaoundé, Capitale Africaine de l'Eau du 9 au 13 Février 2026.
+                                </p>
+                            </div>
+                            <span class="see-more-btn text-xs" onclick="toggleDescription('desc-video4', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Vidéo 5 -->
+                    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden">
+                        <div class="video-container">
+                            <video src="./videos/video5.mp4" title="Mossissi TV - Culture" controls preload="metadata" playsinline></video>
+                        </div>
+                        <div class="p-3 sm:p-4">
+                            <div class="flex justify-between text-xs mb-2">
+                                <span><i class="fas fa-eye mr-1"></i>12K vues</span>
+                                <span>Il y a 5 jours</span>
+                            </div>
+                            <div class="description-container" id="desc-video5">
+                                <p class="text-xs text-gray-600">
+                                   C'est ça qui est là Vérité une fois de plus Joyeux Anniversaire a Son Excellence Paul Biya....et si le Président des Jeunes Patriotes *SERGE ONDOBO avait raison ??....
+                                </p>
+                            </div>
+                            <span class="see-more-btn text-xs" onclick="toggleDescription('desc-video5', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Vidéo 6 -->
+                    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden">
+                        <div class="video-container">
+                            <video src="./videos/video6.mp4" title="Mossissi TV - Culture" controls preload="metadata" playsinline></video>
+                        </div>
+                        <div class="p-3 sm:p-4">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">CAMEROUN 🇨🇲 CAMWATER💦</h3>
+                            <div class="flex justify-between text-xs mb-2">
+                                <span><i class="fas fa-eye mr-1"></i>12K vues</span>
+                                <span>Il y a 5 jours</span>
+                            </div>
+                            <div class="description-container" id="desc-video6">
+                                <p class="text-xs text-gray-600">
+                                    LES PROJETS PRÉSIDENTIELS SE METTENT EN PLACE EFFICACEMENT POUR L'ACCROISSEMENT DE L'OFFRE EN EAU POTABLE
+                                </p>
+                            </div>
+                            <span class="see-more-btn text-xs" onclick="toggleDescription('desc-video6', this)">Voir plus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Galerie d'images avec descriptions - Version image-card (déjà ok) -->
+                <h3 class="text-lg sm:text-xl font-bold text-center text-gray-800 mt-12 mb-6">En coulisses</h3>
+                <div class="images-grid max-w-7xl mx-auto">
+                    <!-- Carte 1 -->
+                    <div class="image-card">
+                        <img src="./images/mossissitv/image1.jpeg" alt="Studio">
+                        <div class="image-card-content">
+                            <h4 class="image-card-title">CAMEROUN 🇨🇲 💦 FLASH INF'EAU CAMWATER</h4>
+                            <div class="image-card-description">
+                                <div class="description-container" id="desc-studio">
+                                    <p class="text-gray-600">La CAMWATER - Délégation Régionale de l'Extrême-Nord (DREN), informe son aimable clientèle qu'en raison de l'instabilité de l'énergie électrique enregistrée sur ses différentes infrastructures hydrauliques depuis le 09 janvier 2026, la desserte en eau potable connaît des perturbations dans la ville de Maroua. En effet, les équipes techniques conjointes ENEO et CAMWATER sont à pieds d'oeuvre pour la résolution du problème. Toutefois, l'on note une nette amélioration depuis ce dimanche, 11 janvier 2026 et le rétablissement de la desserte se fait progressivement dans toute la ville. En attendant, les camions-citernes sont déployés et assurent la distribution d'eau potable dans les quartiers les plus impactés. La CAMWATER présente ses excuses aux populations pour les désagréments causés et réaffirme sa solidarité en cette période particulièrement difficile. COMMUNICATION CAMWATER.</p>
+                                </div>
+                            </div>
+                            <span class="see-more-btn" onclick="toggleDescription('desc-studio', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Carte 2 -->
+                    <div class="image-card">
+                        <img src="./images/mossissitv/image2.jpeg" alt="Interview">
+                        <div class="image-card-content">
+                            <h4 class="image-card-title">CAMEROUN 🇨🇲 💦💦 FLASH INF'EAU CAMWATER: 200 NOUVELLES BORNES-FONTAINES</h4>
+                            <div class="image-card-description">
+                                <div class="description-container" id="desc-interviewtv">
+                                    <p class="text-gray-600">Après la mise en service de 76 bornes fontaines publiques dans la ville de Ngaoundéré en juillet 2023 par le Directeur Général de la CAMWATER et en présence du Secrétaire Général des services du Gouverneur de la Région de l'Adamaoua, l'entreprise entend exécuter une nouvelle phase de construction de 200 bornes-fontaines à gestion commune en lien avec les Collectivités territoriales décentralisées pour le compte du premier semestre 2026. Dans son adresse à la Nation du 31 décembre 2025, le Chef de l'État du Cameroun, S.E.M. Paul BIYA a prescrit de Très Hautes Directives au Gouvernement, dans le secteur de l'alimentation en eau potable pour la poursuite des travaux d'extension des réseaux d'eau potable et des nouveaux branchements. "Les travaux de réhabilitation et d'extension des réseaux de distribution d'eau potable que nous avons engagés à cet égard vont s'intensifier, afin de répondre aux besoins en la matière.", a instruit le Président de la République. La CAMWATER instrument de l'Etat, dans le secteur Eau et Assainissement Liquide, est résolument engagée à apporter des solutions concrètes dans le cadre de l'amélioration de l'accès à l'eau potable et des services d'assainissement pour tous. D'où le lancement imminent des travaux de construction de 200 nouvelles bornes-fontaines publiques dont 50 respectivement au profit des agglomérations de Yaoundé et de Douala et 10 pour chacune des Régions de l'Extrême-Nord, du Nord, de l'Adamaoua, de l'Est, du Centre, du Sud, du Littoral, de l'Ouest, du Nord-Ouest et du Sud-Ouest. RENFORCEMENT DES EXTENSIONS DE RESEAUX D'EAU POTABLE ET DES BRANCHEMENTS Ce projet de la CAMWATER dont la phase 1 sera exécuté en liaison avec les Communes concernées, est un accompagnement au profit des populations, dans le cadre de l'exécution des travaux d'extension des systèmes de réseau d'alimentation en eau potable et des nouveaux branchements au réseau de la CAMWATER en zones urbaines et péri-urbaines. Pour les bénéficiaires de ces 200 bornes-fontaines, cette décision de la CAMWATER constitue un véritable soulagement et une bouffée d'oxygène compte tenu du besoin sans cesse croissant au regard de la forte démographie. Le Top Management a d'ores et déjà instruit les équipes techniques internes de finaliser toutes les diligences nécessaires pour une matérialisation rapide de ces ouvrages, conformément aux Hautes Directives du Président de la République et sous l'impulsion du Gouvernement. L'objectif majeur de la CAMWATER est de réduire la distance entre les points de puisage et les ménages, en ciblant prioritairement les zones où les besoins en eau potable sont tendues. MESURES PALLIATIVES Il convient de rappeler que cette initiative de la CAMWATER de construire des bornes-fontaines est une mesure palliative dans les grandes agglomérations en attendant le démarrage effectif des Projets de reconfiguration des systèmes d'alimentation en eau potable dans les villes de Yaoundé et de Douala, qui vont prendre corps cette année. Deux autres projets majeurs qui viendront en soutien au Projet d'alimentation en eau potable de ville de Yaoundé à travers le fleuve Sanaga (PAEPYS) et le Projet d'urgence pour une meilleure intégration du volume d'eau potable du PAEPYS (PUMIP) déjà opérationnels et du Projet de réhabilitation et d'extension de la station de Japoma-Douala, qui va renforcer significativement le taux de production actuelle. COMMUNICATION CAMWATER.</p>
+                                </div>
+                            </div>
+                            <span class="see-more-btn" onclick="toggleDescription('desc-interviewtv', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Carte 3 -->
+                    <div class="image-card">
+                        <img src="./images/mossissitv/image3.jpeg" alt="Caméra">
+                        <div class="image-card-content">
+                            <h4 class="image-card-title">Dr Blaise MOUSSA : L'eau, une véritable cause nationale</h4>
+                            <div class="image-card-description">
+                                <div class="description-container" id="desc-camera">
+                                    <p class="text-gray-600">▪️Au-delà du protocole, l'hommage rendu par le Directeur Général de la CAMWATER au Ministre de la Fonction Publique et de la Réforme Administrative (MINFOPRA) porte un message de fond : la gestion de l'eau et de l'assainissement est l'affaire de tous. Pour le Président du congrès, la présence du Ministre Joseph LÉ aux assises de l'AAEA est hautement symbolique. Elle vient rappeler que pour apporter de l'eau potable dans chaque foyer camerounais, il ne suffit pas d'investir uniquement dans le béton et l'acier. Il faut, en amont, une Administration Publique moderne, agile et performante. En saluant le MINFOPRA, le DG de la CAMWATER reconnaît que la Ressource Humaine et la réforme administrative sont les moteurs invisibles de l'efficacité technique.</p>
+                                </div>
+                            </div>
+                            <span class="see-more-btn" onclick="toggleDescription('desc-camera', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Carte 4 -->
+                    <div class="image-card">
+                        <img src="./images/mossissitv/image4.jpeg" alt="Régie">
+                        <div class="image-card-content">
+                            <h4 class="image-card-title">Le Catalogue des Grandes Réalisations : L'Eau au cœur de l'Émergence</h4>
+                            <div class="image-card-description">
+                                <div class="description-container" id="desc-regie">
+                                    <p class="text-gray-600">▪️Loin de se contenter de remerciements protocolaires, le Dr Blaise MOUSSA a dressé un inventaire exhaustif et impressionnant des vastes chantiers impulsés par le Président de la République, S.E PAUL BIYA dans le sous-secteur de l'eau potable : ➖Le Gigantisme des Infrastructures : Évocation du projet PAEPYS (alimentation en eau de Yaoundé et ses environs à partir du fleuve Sanaga), véritable prouesse technique destinée à mettre fin définitivement au stress hydrique de la capitale. ➖La Réhabilitation du Réseau National : Présentation des programmes de rénovation des stations de pompage et d'extension des réseaux de distribution dans les villes secondaires, réduisant ainsi la fracture hydraulique entre les régions. ➖La Vision Prospective : Le passage à une gestion plus moderne, intégrée et résiliente, capable de répondre aux besoins d'une population en pleine croissance.</p>
+                                </div>
+                            </div>
+                            <span class="see-more-btn" onclick="toggleDescription('desc-regie', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Carte 5 -->
+                    <div class="image-card">
+                        <img src="./images/mossissitv/image5.jpeg" alt="Journalistes">
+                        <div class="image-card-content">
+                            <h4 class="image-card-title">Eau et Assainissement pour tous : Le Nouveau Manifeste</h4>
+                            <div class="image-card-description">
+                                <div class="description-container" id="desc-journalistes">
+                                    <p class="text-gray-600">▪️Le thème du 23e Congrès de l'Association Africaine de l'Eau et de l'Assainissement (AAEA), qui s'ouvre en ce moment sous le Très Haut Patronage de S.E. Paul BIYA, ne se limite pas à une simple problématique technique. Il s'agit d'une injonction historique : "Des actions fortes pour l'Afrique". Ce choix sémantique marque la fin de l'ère des théories et le début d'une ère d'opérationnalité radicale. Derrière cette thématique, se dessine l'ambition d'un continent qui refuse désormais de voir l'accès à l'eau comme un luxe, mais comme le socle de sa dignité et de sa puissance.</p>
+                                </div>
+                            </div>
+                            <span class="see-more-btn" onclick="toggleDescription('desc-journalistes', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Carte 6 -->
+                    <div class="image-card">
+                        <img src="./images/mossissitv/image6.jpeg" alt="Production">
+                        <div class="image-card-content">
+                            <h4 class="image-card-title">La Renaissance Africaine par l'Eau</h4>
+                            <div class="image-card-description">
+                                <div class="description-container" id="desc-production">
+                                    <p class="text-gray-600">▪️Le thème du 23e Congrès de l'Association Africaine de l'Eau et de l'Assainissement (AAEA), qui s'ouvre en ce moment sous le Très Haut Patronage de S.E. Paul BIYA, ne se limite pas à une simple problématique technique. Il s'agit d'une injonction historique : "Des actions fortes pour l'Afrique". Ce choix sémantique marque la fin de l'ère des théories et le début d'une ère d'opérationnalité radicale. Derrière cette thématique, se dessine l'ambition d'un continent qui refuse désormais de voir l'accès à l'eau comme un luxe, mais comme le socle de sa dignité et de sa puissance.</p>
+                                </div>
+                            </div>
+                            <span class="see-more-btn" onclick="toggleDescription('desc-production', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Carte 7 -->
+                    <div class="image-card">
+                        <img src="./images/mossissitv/image7.jpeg" alt="Statistiques">
+                        <div class="image-card-content">
+                            <h4 class="image-card-title">Participation record aux congrès</h4>
+                            <div class="image-card-description">
+                                <div class="description-container" id="desc-1">
+                                    <p class="text-gray-600">▪️Au cours des 10 dernières années, l'événement a enregistré un nombre record de participants : 1'600 délégués en 2010 à Kampala, 900 en 2012 à Marrakech, 2 000 en 2014 à Abidjan, 1500 en 2016 à Nairobi, 1200 en 2018 à Bamako, 2500 en 2020 à Kampala, 3000 en 2022 à Abidjan et 3000 en 2025 à Kampala.</p>
+                                </div>
+                            </div>
+                            <span class="see-more-btn" onclick="toggleDescription('desc-1', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Carte 8 -->
+                    <div class="image-card">
+                        <img src="./images/mossissitv/image8.jpeg" alt="Cameroun">
+                        <div class="image-card-content">
+                            <h4 class="image-card-title">Le Cameroun, terre d'accueil et de solutions</h4>
+                            <div class="image-card-description">
+                                <div class="description-container" id="desc-2">
+                                    <p class="text-gray-600">▪️En accueillant ce conclave, le Cameroun, sous l'impulsion de S.E. Paul BIYA, réaffirme son rôle de pivot de la diplomatie environnementale en Afrique. L'appel lancé par le Ministre de l'Eau et de l'Énergie positionne notre Pays non seulement comme un hôte généreux, mais comme un laboratoire de solutions où la CAMWATER et ses partenaires internationaux expérimentent déjà les modèles de demain.</p>
+                                </div>
+                            </div>
+                            <span class="see-more-btn" onclick="toggleDescription('desc-2', this)">Voir plus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to action -->
+                <div class="text-center mt-12">
+                    <a href="https://www.facebook.com/mossissitv/" target="_blank" class="inline-flex items-center bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:bg-blue-700 transition text-sm sm:text-base">
+                        <i class="fab fa-facebook-f mr-2"></i>
+                        Suivre Mossissi TV
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== PAGE JEUNES PATRIOTES ==================== -->
+    <div id="page-jpp" class="page">
+        <!-- Hero Section bleue -->
+        <section class="hero-bleu pt-24 sm:pt-28 pb-12 sm:pb-16">
+            <div class="container text-center mx-auto px-4 sm:px-6">
+                
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white">JEUNES <span class="text-yellow-400">PATRIOTES PANAFRICAINS</span></h1>
+                <p class="text-lg sm:text-xl text-blue-200 mt-4">Mouvement citoyen panafricain</p>
+            </div>
+        </section>
+
+        <!-- Description -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                        Fondé par <span class="font-bold text-blue-900">Serge Ondobo</span>, le mouvement Jeunes Patriotes Panafricains (JPP) 
+                        encadre et forme la jeunesse africaine aux valeurs citoyennes, au leadership et à l'engagement communautaire.
+                    </p>
+                </div>
+
+                <!-- Statistiques -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto mb-12">
+                    <div class="bg-gray-50 p-4 text-center rounded-xl">
+                        <div class="text-xl sm:text-2xl font-bold text-blue-900">+5000</div>
+                        <div class="text-xs sm:text-sm text-gray-600">Jeunes formés</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 text-center rounded-xl">
+                        <div class="text-xl sm:text-2xl font-bold text-blue-900">15</div>
+                        <div class="text-xs sm:text-sm text-gray-600">Villes</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 text-center rounded-xl">
+                        <div class="text-xl sm:text-2xl font-bold text-blue-900">+200</div>
+                        <div class="text-xs sm:text-sm text-gray-600">Actions</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 text-center rounded-xl">
+                        <div class="text-xl sm:text-2xl font-bold text-blue-900">3</div>
+                        <div class="text-xs sm:text-sm text-gray-600">Programmes</div>
+                    </div>
+                </div>
+
+                <!-- Vidéos des actions avec descriptions -->
+                <h3 class="text-lg sm:text-xl font-bold text-center text-gray-800 mb-6">Nos actions</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+                    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden">
+                        <div class="video-container">
+                             <video src="./videos/jpp/asg1.mp4" controls preload="metadata" title="Mossissi TV - Interview" class="" ></video>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold text-gray-800 mb-2">🔵🔴 𝐀𝐒𝐒𝐄𝐌𝐁𝐋𝐄𝐄 𝐆𝐄𝐍𝐄𝐑𝐀𝐋𝐄 𝐃𝐄𝐒 𝐉𝐏𝐏 – 𝐄𝐃𝐈𝐓𝐈𝐎𝐍 𝟐𝟎𝟐𝟓 : 𝐋𝐞𝐬 𝐉𝐏𝐏 𝐞𝐧𝐭𝐫𝐞 𝐛𝐢𝐥𝐚𝐧, 𝐫𝐞𝐜𝐨𝐧𝐧𝐚𝐢𝐬𝐬𝐚𝐧𝐜𝐞 𝐞𝐭 𝐚𝐦𝐛𝐢𝐭𝐢𝐨𝐧𝐬 𝐫𝐞𝐧𝐨𝐮𝐯𝐞𝐥𝐞́𝐞𝐬 🔴🔵</h4>
+                            <div class="description-container" id="desc-jpp1">
+                                <p class="text-sm text-gray-600">
+                                     </p>
+                            </div>
+                            <span class="see-more-btn text-sm" onclick="toggleDescription('desc-jpp1', this)">Voir plus</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden">
+                        <div class="video-container">
+                           <video src="./videos/jpp/video1.mp4" controls preload="metadata" title="Mossissi TV - Interview" class="" ></video>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold text-gray-800 mb-2">CAMEROUN</h4>
+                            <div class="description-container" id="desc-jpp2">
+                                <p class="text-sm text-gray-600">
+                                   Retrouvailles Des *Jeunes Patriotes* dans leur rendez-vous annuel qui tenait lieu d,assemblée générale ce 11 Janvier 2026 à la FAHNIENTE à Yaoundé 
+*C'EST TOUJOURS *LE TEMPS DE PAUL BIYA*
+                                </p>
+                            </div>
+                            <span class="see-more-btn text-sm" onclick="toggleDescription('desc-jpp2', this)">Voir plus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Galerie d'images avec descriptions - AVEC CARTES IMAGE-CARD -->
+                <h3 class="text-lg sm:text-xl font-bold text-center text-gray-800 mt-12 mb-6">Moments forts</h3>
+                <div class="images-grid max-w-5xl mx-auto">
+                    <!-- Carte 1 -->
+                    <div class="image-card">
+                        <img src="./images/jpp/asg4.jpg" alt="Formation">
+                        <div class="image-card-content">
+                            <h4 class="image-card-title">🔵🔴 ASSEMBLEE GENERALE DES JPP – EDITION 2025</h4>
+                            <div class="image-card-description">
+                                <div class="description-container" id="desc-jpp-img1">
+                                    <p class="text-gray-600">🔵🔴 𝐀𝐒𝐒𝐄𝐌𝐁𝐋𝐄𝐄 𝐆𝐄𝐍𝐄𝐑𝐀𝐋𝐄 𝐃𝐄𝐒 𝐉𝐏𝐏 – 𝐄𝐃𝐈𝐓𝐈𝐎𝐍 𝟐𝟎𝟐𝟓 : 𝐋𝐞𝐬 𝐉𝐏𝐏 𝐞𝐧𝐭𝐫𝐞 𝐛𝐢𝐥𝐚𝐧, 𝐫𝐞𝐜𝐨𝐧𝐧𝐚𝐢𝐬𝐬𝐚𝐧𝐜𝐞 𝐞𝐭 𝐚𝐦𝐛𝐢𝐭𝐢𝐨𝐧𝐬 𝐫𝐞𝐧𝐨𝐮𝐯𝐞𝐥𝐞́𝐞𝐬 🔴🔵
+                                    
+                                    🔊 Les Jeunes Patriotes Panafricains (JPP) ont tenu, ce dimanche 11 janvier 2026, leur Assemblée Générale annuelle dans le cadre convivial et symbolique de La Fahniente. Un rendez-vous majeur de la vie de l'organisation, marqué par une forte mobilisation des membres, la présence d'invités de marque et la participation exceptionnelle des JPP de la diaspora venus tout droit de la République Démocratique du Congo (RDC), notamment Dr Naomi Mabinda et Dr Merveille Lutonto.
+
+                                    ✨ Cette rencontre stratégique a réuni les membres du Bureau Exécutif, des diplomates, des invités spéciaux, ainsi qu'un grand nombre de militants JPP, confirmant une fois de plus l'ancrage, la cohésion et le rayonnement national et international de notre mouvement.
+
+                                    ♨️ Prenant la parole à l'ouverture des travaux, la Présidente du Comité d'Organisation, Martha Leo, également 1ʳᵉ Vice-présidente des JPP, a tenu à adresser à l'ensemble des membres ses vœux de bonne et heureuse année 2026. Elle a formulé le vœu que cette nouvelle année soit porteuse de paix, de santé, de réussite, mais surtout marquée par un engagement encore plus fort et plus constant au service des JPP et des idéaux patriotiques qui fondent notre organisation.
+
+                                    🔊 Dans un moment empreint d'émotion et de reconnaissance, elle a exprimé ses sincères remerciements au Président des JPP, Serge Ondobo, Chevalier de l'Ordre du Mérite Camerounais, saluant son leadership visionnaire, sa disponibilité constante et son engagement sans relâche, qui constituent le socle des acquis, de la stabilité et des perspectives d'avenir des JPP.
+
+                                    🛑 Le point relatif au bilan des activités de l'année 2025 a été présenté par la Secrétaire Générale, Fany Diane, assistée de son adjoint Michel Bondjé. Ce bilan a permis de mettre en lumière une année riche en actions, en mobilisation et en résultats concrets.
+
+                                    Parmi les faits saillants de l'année 2025, il ressort que :
+
+                                    ✅ Les Femmes JPP ont, comme à l'accoutumée, reçu des pagnes du 8 mars, généreusement offerts par le Président Serge Ondobo, pour le plus grand bonheur de ces braves dames.
+
+                                    ✅ Grâce à l'appui personnel du Président Serge Ondobo, deux jeunes patriotes, Joseph Nico Tsimi et Pamela Menko, ont pu bénéficier d'un emploi au sein de deux grandes structures de la place, traduisant l'engagement concret des JPP en faveur de l'insertion socioprofessionnelle des jeunes.
+
+                                    ✅ Les JPP ont marqué une participation massive, effective et remarquée à la campagne présidentielle, réaffirmant leur soutien indéfectible au Président Paul Biya.
+
+                                    ✅ Certains membres ont pris part aux programmes sur le patriotisme, organisés par la Vice-présidente Coriane Sama dans les locaux de Mossissi Group, le 7 décembre 2025. Ces activités ont été suivies par le Grand Gala Littéraire, tenu le 3 janvier 2026 au Musée National.
+
+                                    ✅ Les JPP ont également participé à la 8ᵉ édition du Championnat Serge Ondobo, qui s'est déroulé de juin à août 2025, avec la Vice-présidente Big Nadège en qualité de Présidente du club JPP FC et Aldin NGANTCHOU comme coach.
+
+                                    ♻️ Dans le cadre de leur traditionnelle assistance sociale, les JPP ont une fois de plus fait preuve d'une grande solidarité envers leurs membres. Plusieurs patriotes ont bénéficié de mains levées et des aides statutaires, aussi bien lors de moments de joie que dans l'épreuve.
+
+                                    🛑 Parmi les actions notables :
+                                    🔹 Main levée pour la libération du patriote Oscar Lukusa (RDC 🇨🇩) : 104 500 FCFA
+                                    🔹 Voir bébé de la VP Dr Nelly : 312 000 FCFA + aide statutaire 30 000 FCFA
+                                    🔹 Voir bébé du patriote Yves Duclair : 165 500 FCFA + aide statutaire 30 000 FCFA
+                                    🔹 Mariage du patriote Anicet Ndzobo : 167 000 FCFA + aide statutaire 250 000 FCFA
+                                    🔹 Mariage de la VP Ariane Tsamo : 200 000 FCFA + aide statutaire 250 000 FCFA
+                                    🔹 Décès du père des patriotes Fany Diane et Sidoine : 1 005 000 FCFA + aide statutaire 300 000 FCFA
+                                    🔹 Décès de la patriote LaRose Mvondo : 553 400 FCFA + aide statutaire 150 000 FCFA
+                                    🔹 Décès du mari de la patriote Chantal Eloundou : 250 000 FCFA + aide statutaire 150 000 FCFA
+                                    🔹 Décès du père de la patriote Liliane Mballa : 319 500 FCFA + aide statutaire 150 000 FCFA
+                                    🔹 Décès de la mère du patriote Joseph Nico : 250 000 FCFA
+
+                                    🛑 Le bilan financier présenté par la Vice-présidente en charge des finances, Joséphine Mayap, fait état d'une mobilisation de 56 519 000 FCFA pour l'année 2025, issus des différentes caisses et cotisations.
+
+                                    À titre de rappel :
+                                    📌 2023 : 56 310 000 FCFA
+                                    📌 2024 : 49 003 000 FCFA
+
+                                    Ces chiffres traduisent une gestion rigoureuse, une discipline financière et la confiance renouvelée des membres envers leurs instances dirigeantes.
+
+                                    ♨️ Le titre de Meilleure JPP 2025 a été attribué à Veruskha des Béatitudes Fossi, dont le prix sera remis dans les prochains jours par le Président des JPP, Serge Ondobo.
+
+                                    ♨️ La suite des activités a été marquée par la présentation solennelle des vœux au Président des JPP par l'ensemble des participants, dans une atmosphère fraternelle et empreinte de reconnaissance.
+
+                                    🍾✨ L'Assemblée Générale s'est achevée sur une note de joie, de culture et de convivialité, grâce à la prestation artistique de Thierry Olemba, grand acteur de la culture camerounaise. Des moments de sonorisation et de danses diverses ont ensuite permis aux membres de célébrer l'unité et la fraternité qui caractérisent les JPP.
+
+                                    ✨ Les JPP sortent de cette Assemblée Générale 2026 plus unis, plus engagés et plus déterminés que jamais à poursuivre leur mission patriotique au service de la Nation et du panafricanisme.
+
+                                    #jpp #assembléegénérale2026 #EngagementPatriotique #solidarité #diaspora #leadershipdevelopment #Panafricanisme</p>
+                                </div>
+                            </div>
+                            <span class="see-more-btn" onclick="toggleDescription('desc-jpp-img1', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Carte 2 -->
+                    <div class="image-card">
+                        <img src="./images/jpp/ree.jpg" alt="Jeunes">
+                        <div class="image-card-content">
+                            <h4 class="image-card-title">Soutien au Président Paul BIYA</h4>
+                            <div class="image-card-description">
+                                <div class="description-container" id="desc-jpp-img2">
+                                    <p class="text-gray-600">Serge Ondobo ET LES JEUNES PATRIOTES PANAFRICAINS DERRIÈRE LA RÉÉLECTION DU PRÉSIDENT PAUL BIYA POUR UN NOUVEAU SEPTENNAT DE LA GLOIRE GLORIEUSE 👏👏👏👏👏👏👏👏👏👏👏👏👏👏👏👏👏</p>
+                                </div>
+                            </div>
+                            <span class="see-more-btn" onclick="toggleDescription('desc-jpp-img2', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Carte 3 -->
+                    <div class="image-card">
+                        <img src="./images/jpp/sport.jpg" alt="Rassemblement">
+                        <div class="image-card-content">
+                            <h4 class="image-card-title">Moment de détente JPP</h4>
+                            <div class="image-card-description">
+                                <div class="description-container" id="desc-jpp-img3">
+                                    <p class="text-gray-600">Moment de détente du mouvement Jeunes Patriotes Panafricains.</p>
+                                </div>
+                            </div>
+                            <span class="see-more-btn" onclick="toggleDescription('desc-jpp-img3', this)">Voir plus</span>
+                        </div>
+                    </div>
+
+                    <!-- Carte 4 -->
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400" alt="Sport">
+                        <div class="image-card-content">
+                            <h4 class="image-card-title">Finale du tournoi Mossisso FC</h4>
+                            <div class="image-card-description">
+                                <div class="description-container" id="desc-jpp-img4">
+                                    <p class="text-gray-600">Finale du tournoi Mossisso FC, moment de partage et de convivialité.</p>
+                                </div>
+                            </div>
+                            <span class="see-more-btn" onclick="toggleDescription('desc-jpp-img4', this)">Voir plus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programmes -->
+                <h3 class="text-lg sm:text-xl font-bold text-center text-gray-800 mt-12 mb-6">Nos programmes</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                    <div class="bg-blue-50 p-6 rounded-xl text-center">
+                        <i class="fas fa-graduation-cap text-3xl text-blue-900 mb-3"></i>
+                        <h4 class="font-bold text-gray-800 mb-2">Leadership</h4>
+                        <p class="text-sm text-gray-600">Formation des jeunes au leadership</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-xl text-center">
+                        <i class="fas fa-hand-holding-heart text-3xl text-blue-900 mb-3"></i>
+                        <h4 class="font-bold text-gray-800 mb-2">Citoyenneté</h4>
+                        <p class="text-sm text-gray-600">Actions citoyennes et éducation civique</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-xl text-center">
+                        <i class="fas fa-futbol text-3xl text-blue-900 mb-3"></i>
+                        <h4 class="font-bold text-gray-800 mb-2">Sport</h4>
+                        <p class="text-sm text-gray-600">Mossisso Football Club</p>
+                    </div>
+                </div>
+
+                <!-- Call to action -->
+                <div class="text-center mt-12">
+                    <a href="https://www.facebook.com/groups/867202710143607/" target="_blank" class="inline-flex items-center bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:bg-blue-700 transition text-sm sm:text-base">
+                        <i class="fab fa-facebook-f mr-2"></i>
+                        Rejoindre le mouvement
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Fonction pour changer de page
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('page-' + pageId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Fermer le menu mobile si ouvert
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        // Fonction pour toggle la description
+        function toggleDescription(elementId, btnElement) {
+            const descElement = document.getElementById(elementId);
+            descElement.classList.toggle('expanded');
+            
+            if (descElement.classList.contains('expanded')) {
+                btnElement.textContent = 'Voir moins';
+            } else {
+                btnElement.textContent = 'Voir plus';
+            }
+        }
+
+        // Menu mobile
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Smooth scroll pour les ancres internes
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
