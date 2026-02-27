@@ -31,13 +31,14 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://mossissigroup.vercel.app/">
-        <script type="application/ld+json">
+    <script type="application/ld+json">
     {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "MOSSISSI Group",
     "url": "https://mossissigroup.vercel.app",
     "logo": "https://mossissigroup.vercel.app/images/logo.jpeg",
+    "sameAs":[
         "https://www.facebook.com/serge.ondobo",
         "https://www.facebook.com/mossissitv/",
         "https://www.facebook.com/groups/867202710143607/"
@@ -1100,7 +1101,45 @@
             if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
             }
+
+
+            updateMetaTags(pageId);
         }
+
+        function updateMetaTags(pageId) {
+            let title = "MOSSISSI Group | Cabinet de Lobbying international & Média d'Influence";
+            let description = "MOSSISSI Group : lobbying politique & financier, Mossissi TV (50K+ abonnés), mouvement Jeunes Patriotes Panafricains. Influence et engagement pour l'Afrique.";
+
+            switch (pageId) {
+                case 'cabinet':
+                    title = "MOSSISSI Group | Cabinet de Lobbying Politique & Financier International";
+                    description = "Découvrez notre cabinet de lobbying international. Conseil stratégique, représentation d'intérêts et accompagnement d'investissements en Afrique avec Serge Ondobo.";
+                    break;
+                case 'mosssitv':
+                    title = "MOSSISSI TV | La Chaîne d'Information Panafricaine";
+                    description = "Suivez Mossissi TV, le média d'influence qui couvre l'actualité africaine. Plus de 50 000 abonnés, reportages exclusifs et débats. Rejoignez-nous !";
+                    break;
+                case 'jpp':
+                    title = "Jeunes Patriotes Panafricains (JPP) | Mouvement Citoyen";
+                    description = "Le mouvement citoyen fondé par Serge Ondobo. Formation au leadership, actions citoyennes et engagement pour une jeunesse africaine forte et unie.";
+                    break;
+                // 'accueil' utilise déjà les valeurs par défaut
+            }
+
+            document.title = title;
+            document.querySelector('meta[name="description"]').setAttribute('content', description);
+            
+            // Mettre à jour aussi les balises Open Graph et Twitter pour un meilleur partage
+            document.querySelector('meta[property="og:title"]').setAttribute('content', title);
+            document.querySelector('meta[name="twitter:title"]').setAttribute('content', title);
+            document.querySelector('meta[property="og:description"]').setAttribute('content', description);
+            document.querySelector('meta[name="twitter:description"]').setAttribute('content', description);
+        }
+
+
+
+
+
 
         // Fonction pour toggle la description
         function toggleDescription(elementId, btnElement) {
