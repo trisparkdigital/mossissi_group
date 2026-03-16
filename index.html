@@ -255,6 +255,44 @@
                 font-size: 1rem;
             }
         }
+        /* Pagination */
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .page-btn {
+            background-color: white;
+            color: #1e3a8a;
+            border: 2px solid rgba(30, 58, 138, 0.2);
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background-color: #fbbf24;
+            color: #1e3a8a;
+            border-color: #fbbf24;
+        }
+
+        .page-btn.active {
+            background-color: #1e3a8a;
+            color: white;
+            border-color: #1e3a8a;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: #f3f4f6;
+        }
     </style>
 </head>
 
@@ -598,7 +636,7 @@
                     <!-- Images avec descriptions -->
                     <div>
                         <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-4">Moments clés</h3>
-                        <div class="grid grid-cols-2 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 paginated-gallery" data-per-page="4">
                             <!-- Carte 1 -->
                             <div class="image-card">
                                 <img src="./images/cabinet/presi5.jpg"
@@ -1271,7 +1309,7 @@
 
                 <!-- Grille de vidéos avec descriptions -->
                 <h3 class="text-lg sm:text-xl font-bold text-center text-gray-800 mb-6">Dernières vidéos</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto paginated-gallery" data-per-page="4">
                     <!-- Vidéo 1 -->
                     <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden">
                         <div class="video-container">
@@ -1395,7 +1433,7 @@
 
                 <!-- Galerie d'images avec descriptions -->
                 <h3 class="text-lg sm:text-xl font-bold text-center text-gray-800 mt-12 mb-6">En coulisses</h3>
-                <div class="images-grid max-w-7xl mx-auto">
+                <div class="images-grid max-w-7xl mx-auto paginated-gallery" data-per-page="6">
                     <!-- Carte 1 -->
                     <div class="image-card">
                         <img src="./images/mossissitv/image1.jpeg"
@@ -1678,7 +1716,7 @@
 
                 <!-- Vidéos des actions avec descriptions -->
                 <h3 class="text-lg sm:text-xl font-bold text-center text-gray-800 mb-6">Nos actions</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12 paginated-gallery" data-per-page="2">
                     <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden">
                         <div class="video-container">
                             <video src="./videos/jpp/asg1.mp4" controls preload="metadata"
@@ -1722,7 +1760,7 @@
 
                 <!-- Galerie d'images avec descriptions -->
                 <h3 class="text-lg sm:text-xl font-bold text-center text-gray-800 mt-12 mb-6">Moments forts</h3>
-                <div class="images-grid max-w-5xl mx-auto">
+                <div class="images-grid max-w-5xl mx-auto paginated-gallery" data-per-page="4">
                     <!-- Carte 1 -->
                     <div class="image-card">
                         <img src="./images/jpp/asg4.jpg"
@@ -2046,6 +2084,65 @@
             });
         });
 
+        // Logique de Pagination
+        function initPagination() {
+            const galleries = document.querySelectorAll('.paginated-gallery');
+            
+            galleries.forEach((gallery, index) => {
+                const itemsPerPage = parseInt(gallery.getAttribute('data-per-page')) || 4;
+                const items = Array.from(gallery.children).filter(child => !child.classList.contains('pagination-controls'));
+                const totalItems = items.length;
+                const totalPages = Math.ceil(totalItems / itemsPerPage);
+                
+                if (totalPages <= 1) return;
+
+                let controlsId = 'pagination-controls-' + index;
+                let controls = document.getElementById(controlsId);
+                if (!controls) {
+                    controls = document.createElement('div');
+                    controls.id = controlsId;
+                    controls.className = 'pagination-controls';
+                    gallery.parentNode.insertBefore(controls, gallery.nextSibling);
+                }
+
+                function renderPage(page) {
+                    items.forEach((item, i) => {
+                        if (i >= (page - 1) * itemsPerPage && i < page * itemsPerPage) {
+                            item.style.display = '';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+
+                    controls.innerHTML = '';
+                    
+                    const prevBtn = document.createElement('button');
+                    prevBtn.className = 'page-btn';
+                    prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                    prevBtn.disabled = page === 1;
+                    prevBtn.onclick = () => renderPage(page - 1);
+                    controls.appendChild(prevBtn);
+
+                    for (let i = 1; i <= totalPages; i++) {
+                        const pageBtn = document.createElement('button');
+                        pageBtn.className = 'page-btn' + (i === page ? ' active' : '');
+                        pageBtn.textContent = i;
+                        pageBtn.onclick = () => renderPage(i);
+                        controls.appendChild(pageBtn);
+                    }
+
+                    const nextBtn = document.createElement('button');
+                    nextBtn.className = 'page-btn';
+                    nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                    nextBtn.disabled = page === totalPages;
+                    nextBtn.onclick = () => renderPage(page + 1);
+                    controls.appendChild(nextBtn);
+                }
+
+                renderPage(1);
+            });
+        }
+
         // Contrôle de la vidéo d'arrière-plan sur la page Cabinet
         document.addEventListener('DOMContentLoaded', function () {
             const video = document.getElementById('hero-video');
@@ -2067,6 +2164,9 @@
                     }
                 });
             }
+
+            // Initialiser la pagination
+            initPagination();
         });
     </script>
 </body>
